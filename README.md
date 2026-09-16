@@ -1,11 +1,11 @@
 # LIGENTEC Chip Layout for MPW 45 scheduled in OCT 2026
-This tapeout is intended primarily to evaluate the new loss of the AN800 process after recent changes to the material. There will be test structures to evaluate this change along with the complete spiral to fulfill deliverables for the TTDF parametric amplifier project.
-**For Windows:**
+This tapeout is intended primarily to evaluate the new loss of the AN800 process after recent changes to the material. There will be test structures to evaluate this change along with the complete spiral to fulfill deliverables for the TTDF parametric amplifier project.<br><br>
+**For Windows:<br>**
 **1. Run the setup.bat file. <br>**
 **2. The .bat file will create a virtual environment in your project directory and install the required python version and associated packages(including gdsfactory). <br>**
 **3. Test that everything is set up well by running test.py <br>**
-**<br>**
-**For Mac:**
+**<br><br>**
+**For Mac:<br>**
 **1. Create a virtual environment named in the project directory with the specified python version.<br>**
 **2. Then pip install -r requirements.text<br>** 
 
