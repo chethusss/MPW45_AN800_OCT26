@@ -9,11 +9,11 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 
 **For Mac:<br>**
 + Open terminal on VSCode<br>
-+ Install specified python version globally [run: brew install python@3.12]<br>
-+ Create the virtual environment named in the project directory with the specified python version. [run: python3.12 -m venv .venv]<br>
++ Install specified python version globally [run: **brew install python@3.12**]<br>
++ Create the virtual environment named in the project directory with the specified python version. [run: **python3.12 -m venv .venv**]<br>
 + Restart VSCode to let the app recognise the new .venv folder.<br>  
-+ Then pip install -r requirements.txt<br>
-+ Test that everything is set up well by running: python test.py<br>
++ Then install all associated packages using the requirements.txt file [run: **pip install -r requirements.txt**]<br>
++ Test that everything is set up well [run: **python test.py**]<br>
 
 <br>
 
