@@ -3,10 +3,12 @@ import numpy as np
 
 from technology.pdk import AN800_PDK
 from blocks.spiral_block import spiral_block
+from blocks.amzi_test_block import amzi_block
+from blocks.ring_test_block import ring_array
 
 
 # ----------------------------------------------------------
-# Activate AN800 PDK
+# Activate AN800 PDK - custom made
 # ----------------------------------------------------------
 
 AN800_PDK.activate()
@@ -68,6 +70,15 @@ spiraltest.move(
 )
 
 
+AMZItest1 = pic_5a.add_ref(
+    amzi_block()
+)
+
+AMZItest1.move(
+    (10, 800),
+)
+Ring_block = pic_5a.add_ref(ring_array())
+Ring_block.move(origin=Ring_block.ports["ref1"].center,destination=(10,AMZItest1.ports["ref1"].y+127*31))
 # ----------------------------------------------------------
 # Add PIC blocks to chip
 # ----------------------------------------------------------

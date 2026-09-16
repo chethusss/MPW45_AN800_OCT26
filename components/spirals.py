@@ -136,20 +136,29 @@ def x_double_spiral(
         - bend1.ports["o2"].center[1]
     )
 
-    sbend = c << gf.components.bend_s(
-        size=(2 * Rmin, dy),
+    sbend_h1 = c << gf.components.bend_euler(
+        angle=180,
+        radius=np.abs(dy/4),
         cross_section="MM",
     )
 
-    sbend.connect(
-        "o1",
+    sbend_h1.connect(
+        "o2",
         bend1.ports["o2"],
     )
-
+    sbend_h2 = c << gf.components.bend_euler(
+        angle=180,
+        radius=np.abs(dy/4),
+        cross_section="MM",
+    )
+    sbend_h2.connect(
+        "o1",
+        sbend_h1.ports["o1"],
+    )
     # --------------------------------------------------
     # Straight after S-bend
     # --------------------------------------------------
-    straight_length = np.abs(bend2.ports["o2"].center[0] - sbend.ports["o2"].center[0])
+    straight_length = np.abs(bend2.ports["o2"].center[0] - sbend_h2.ports["o2"].center[0])
     straight = c << gf.components.straight(
         length=straight_length,
         cross_section="MM",
@@ -157,7 +166,7 @@ def x_double_spiral(
 
     straight.connect(
         "o1",
-        sbend.ports["o2"],
+        sbend_h2.ports["o2"],
     )
     # --------------------------------------------------
     # Straight + final 180-degree bend from spiral1 o2
@@ -187,17 +196,22 @@ def x_double_spiral(
         straight1.ports["o2"],
     )
 
+    taper1 = c << gf.components.taper(length=300,width1 = 2.3, width2=1, cross_section="MM")
+    taper2 = c << gf.components.taper(length=300,width1 = 2.3, width2=1, cross_section="MM")
+
+    taper1.connect("o1",final_bend.ports["o2"])
+    taper2.connect("o1",spiral2.ports["o2"])
     # --------------------------------------------------
     # Output ports
     # --------------------------------------------------
 
     c.add_port(
         name="o1",
-        port=final_bend.ports["o2"],
+        port=taper1.ports["o2"],
     )
 
     c.add_port(
         name="o2",
-        port=spiral2.ports["o2"],
+        port=taper2.ports["o2"],
     )
     return c

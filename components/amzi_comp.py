@@ -94,14 +94,14 @@ def x_amzi(
         c,
         port1=mmi1.ports["o4"],
         port2=spiral.ports["o2"],
-        cross_section="MM",
+        cross_section="SM",
     )
 
     route2 = gf.routing.route_single(
         c,
         port1=spiral.ports["o1"],
         port2=mmi2.ports["o2"],
-        cross_section="MM",
+        cross_section="SM",
     )
     # ==========================================================
     # External AMZI ports

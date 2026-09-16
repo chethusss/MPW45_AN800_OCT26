@@ -1,7 +1,15 @@
-*.txt
+# Python
+__pycache__/
 *.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+.venv_backup/
+# Logs
 *.log
-*.gds
-*.venv
-C_/Users/MANORA~1/AppData/Local/Temp/gdsfactory/*.gds
-#GDS_Output/LIGENTEC_10mmx5mm_May2024.gds
+
+# Build/output files
+build/
+
+# gdsfactory temporary files

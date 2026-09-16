@@ -53,7 +53,7 @@ def exspot_packaging(
     # 10 um before the right edge of the BB
     c.add_port(
         name="o2",
-        center=(228, 0),
+        center=(674, 0),
         width=wg_width,
         orientation=0,
         layer="X1P",
@@ -139,12 +139,12 @@ def MMI1x2(
     )
 
     c.add_port(
-        name="o2",
+        name="o3",
         port=wg_out0.ports["o2"],
     )
 
     c.add_port(
-        name="o3",
+        name="o2",
         port=wg_out1.ports["o2"],
     )
 
