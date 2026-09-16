@@ -1,18 +1,25 @@
 # LIGENTEC Chip Layout for MPW 45 scheduled in OCT 2026
 This tapeout is intended primarily to evaluate the new loss of the AN800 process after recent changes to the material. There will be test structures to evaluate this change along with the complete spiral to fulfill deliverables for the TTDF parametric amplifier project.<br><br>
-**For Windows:<br>**
-+ Run the setup.bat file. <br>
-+ The .bat file will create a virtual environment in your project directory and install the required python version and associated packages(including gdsfactory). <br>
-+ Open the project directory. <br>
-+ Test that everything is set up well by running test.py <br>
+**For Windows:**
 
-<br>
+- Open the terminal on VSCode from the project directory.
 
-**For Mac:<br>**
-+ Open terminal on VSCode from the project directory<br>
-+ Run the setup. [run: **bash setup.sh**]
-+ Restart VSCode to let the app recognise the new .venv folder.<br>  
-+ Test that everything is set up well [run: **python test.py**]<br>
+- Run the setup. [run: **setup.bat**]
+
+- Restart VSCode to let the app recognise the new `.venv` folder.
+
+- Test that everything is set up well [run: **python test.py**]
+
+
+**For Mac:**
+
+- Open terminal on VSCode from the project directory.
+
+- Run the setup. [run: **bash setup.sh**]
+
+- Restart VSCode to let the app recognise the new `.venv` folder.
+
+- Test that everything is set up well [run: **python test.py**]
 
 <br>
 
