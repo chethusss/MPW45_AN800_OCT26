@@ -3,16 +3,16 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 **For Windows:<br>**
 + Run the setup.bat file. <br>
 + The .bat file will create a virtual environment in your project directory and install the required python version and associated packages(including gdsfactory). <br>
++ Open the project directory. <br>
 + Test that everything is set up well by running test.py <br>
 
 <br>
 
 **For Mac:<br>**
-+ Open terminal on VSCode<br>
-+ Install specified python version globally [run: **brew install python@3.12**]<br>
-+ Create the virtual environment named in the project directory with the specified python version. [run: **python3.12 -m venv .venv**]<br>
++ Open terminal on VSCode from the project directory<br>
++ Make an executable for setup.sh [run: **chmod +x setup.sh**]<br>
++ Run the executable [run: **./setup.sh**]<br>
 + Restart VSCode to let the app recognise the new .venv folder.<br>  
-+ Then install all associated packages using the requirements.txt file [run: **pip install -r requirements.txt**]<br>
 + Test that everything is set up well [run: **python test.py**]<br>
 
 <br>
