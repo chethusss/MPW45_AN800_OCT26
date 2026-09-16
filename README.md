@@ -1,5 +1,5 @@
 # LIGENTEC Chip Layout for MPW 45 scheduled in OCT 2026
- This github repository is created to build the chip layout to evaluate the loss of the AN800 platform after their process change in 2026.
+This tapeout is intended primarily to evaluate the new loss of the AN800 process after recent changes to the material. There will be test structures to evaluate this change along with the complete spiral to fulfill deliverables for the TTDF parametric amplifier project.
 
 > 🚀 **IMPORTANT** 🚀
 >
