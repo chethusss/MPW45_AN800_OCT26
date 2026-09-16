@@ -10,8 +10,7 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 
 **For Mac:<br>**
 + Open terminal on VSCode from the project directory<br>
-+ Make an executable for setup.sh [run: **chmod +x setup.sh**]<br>
-+ Run the executable [run: **./setup.sh**]<br>
++ Run the setup. [run: **bash setup.sh**]
 + Restart VSCode to let the app recognise the new .venv folder.<br>  
 + Test that everything is set up well [run: **python test.py**]<br>
 
