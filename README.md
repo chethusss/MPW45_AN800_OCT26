@@ -4,12 +4,14 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 + Run the setup.bat file. <br>
 + The .bat file will create a virtual environment in your project directory and install the required python version and associated packages(including gdsfactory). <br>
 + Test that everything is set up well by running test.py <br>
-<br><br>
+
+<br>
 
 **For Mac:<br>**
 + Create a virtual environment named in the project directory with the specified python version.<br>
 + Then pip install -r requirements.text<br>
 
+<br>
 > **Versions for pre-requisites**
 >
 > Python version- 3.12.10
