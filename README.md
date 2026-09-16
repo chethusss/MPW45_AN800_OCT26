@@ -10,6 +10,7 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 **For Mac:<br>**
 + Create a virtual environment named in the project directory with the specified python version.<br>
 + Then pip install -r requirements.text<br>
++ Test that everything is set up well by running test.py
 
 <br>
 
