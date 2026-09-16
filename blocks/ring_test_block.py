@@ -71,9 +71,9 @@ def ring_array():
  r11 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.500)
  r12 = comp<<ring_resonator(R=200, wr = 2.3, wb = 1, g = 0.500)
 
- r9.move(origin = r9.ports["o2"].center, destination=(r1.xmin-100,(r1.y+50)))
- r10.move(origin = r10.ports["o2"].center, destination=(r1.xmin+100,(r1.y-150)))
- r11.move(origin = r11.ports["o2"].center, destination=(r1.xmin-100,(r1.y-350)))
- r12.move(origin = r12.ports["o2"].center, destination=(r1.xmin+350,(r1.y-600)))
+ r9.move(origin = r9.ports["o2"].center, destination=(r1.xmin-150,(r1.y)))
+ r10.move(origin = r10.ports["o2"].center, destination=(r1.xmin+50,(r1.y-200)))
+ r11.move(origin = r11.ports["o2"].center, destination=(r1.xmin-150,(r1.y-400)))
+ r12.move(origin = r12.ports["o2"].center, destination=(r1.xmin+220,(r1.y-650)))
  return comp
 
