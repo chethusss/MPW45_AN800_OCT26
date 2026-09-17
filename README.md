@@ -4,7 +4,7 @@ This tapeout is intended primarily to evaluate the new loss of the AN800 process
 
 - Open the terminal on VSCode from the project directory.
 
-- Run the setup. [run: **setup.bat**]
+- Run the setup. [For cmd run: **setup.bat**, For powershell run: **.\setup.bat**]
 
 - Restart VSCode to let the app recognise the new `.venv` folder.
 
