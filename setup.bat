@@ -258,6 +258,28 @@ echo.
 echo VS Code should use:
 echo .venv\Scripts\python.exe
 
+REM ==========================================================
+REM Configure VS Code Python interpreter
+REM ==========================================================
+
+echo.
+echo Configuring VS Code Python interpreter...
+
+if not exist ".vscode" (
+    mkdir ".vscode"
+)
+
+(
+    echo {
+    echo     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    echo     "python.terminal.activateEnvironment": true
+    echo }
+) > ".vscode/settings.json"
+
+echo VS Code configured to use:
+echo .venv\Scripts\python.exe
+
+
 echo.
 echo ==========================================
 echo Your environment is ready!

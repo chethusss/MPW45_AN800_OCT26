@@ -213,6 +213,26 @@ echo
 echo "Virtual environment:"
 echo "$PWD/.venv"
 
+# ==========================================================
+# Configure VS Code Python interpreter
+# ==========================================================
+
+echo
+echo "Configuring VS Code Python interpreter..."
+
+mkdir -p .vscode
+
+cat > .vscode/settings.json << 'EOF'
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.terminal.activateEnvironment": true
+}
+EOF
+
+echo "VS Code configured to use:"
+echo ".venv/bin/python"
+
+
 echo
 echo "=========================================="
 echo "Environment is ready!"
