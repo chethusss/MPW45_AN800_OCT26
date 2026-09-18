@@ -54,6 +54,13 @@ def x_amzi(
         spacing=spacing,
     )
 
+    spiral2 = c << x_double_spiral(
+    L=0.001,
+    n=n,
+    radius=radius,
+    spacing=spacing,
+    )
+
     spiral.move(
         spiral.ports["o1"].center,
         (
@@ -62,26 +69,34 @@ def x_amzi(
         ),
     )
 
-    # ==========================================================
-    # Reference arm - TOP
-    #
-    # MMI1.o3 -> MMI2.o1
-    # ==========================================================
-
-    reference_length = (
-        mmi2.ports["o1"].center[0]
-        - mmi1.ports["o3"].center[0]
+    spiral2.mirror_y()
+    spiral2.move(
+    spiral2.ports["o1"].center,
+    (
+        X2-1000,
+        Y2+225,
+    ),
     )
-
-    reference = c << gf.components.straight(
-        length=reference_length,
+    # ==========================================================
+    # Delay arm - TOP
+    #
+    # MMI1.o3 -> spiral2.o1
+    # spiral2.o2 -> MMI2.o1
+    # ==========================================================
+    route1t = gf.routing.route_single(
+        c,
+        port1=mmi1.ports["o3"],
+        port2=spiral2.ports["o2"],
         cross_section="SM",
     )
 
-    reference.connect(
-        "o1",
-        mmi1.ports["o3"],
+    route2t = gf.routing.route_single(
+        c,
+        port1=spiral2.ports["o1"],
+        port2=mmi2.ports["o1"],
+        cross_section="SM",
     )
+
 
     # ==========================================================
     # Delay arm - BOTTOM
@@ -90,14 +105,14 @@ def x_amzi(
     # spiral.o2 -> MMI2.o2
     # ==========================================================
 
-    route1 = gf.routing.route_single(
+    route1b = gf.routing.route_single(
         c,
         port1=mmi1.ports["o4"],
         port2=spiral.ports["o2"],
         cross_section="SM",
     )
 
-    route2 = gf.routing.route_single(
+    route2b = gf.routing.route_single(
         c,
         port1=spiral.ports["o1"],
         port2=mmi2.ports["o2"],

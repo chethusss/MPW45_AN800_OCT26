@@ -1,12 +1,12 @@
 import gdsfactory as gf
 from components.pring import ring_resonator
 from blocks.exspot_array_block import exspot_array
-from components.BB_import import PBS, MMI1x2, MMI2x2
+from components.BB_import import PBS, MMI1x2, MMI2x2, exspot_packaging
 
 @gf.cell
-def ring_array():
+def ring_array(num = 12):
  comp = gf.Component()
- ec = comp<<exspot_array()
+ ec = comp<<exspot_array(num=num)
  ###########################################################################################################
  #400 um radius rings block - BLOCK A
  r1 = comp<<ring_resonator(R=400, wr = 2.3, wb = 1, g = 0.500)
@@ -66,14 +66,32 @@ def ring_array():
  r8.move(origin = r8.ports["o1"].center, destination=(r2.xmax+100,(r2.y-350)))
 
  ##################################################################################################################
- r9 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.500)
- r10 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.500)
- r11 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.500)
+ r9 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.400)
+ r10 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.450)
+ r11 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.550)
  r12 = comp<<ring_resonator(R=200, wr = 2.3, wb = 1, g = 0.500)
 
  r9.move(origin = r9.ports["o2"].center, destination=(r1.xmin-150,(r1.y)))
  r10.move(origin = r10.ports["o2"].center, destination=(r1.xmin+50,(r1.y-200)))
  r11.move(origin = r11.ports["o2"].center, destination=(r1.xmin-150,(r1.y-400)))
  r12.move(origin = r12.ports["o2"].center, destination=(r1.xmin+220,(r1.y-650)))
+
+
+ r13 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.400, angle=0)
+ r14 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.45, angle=0)
+ r15 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.5, angle=0)
+ r16 = comp<<ring_resonator(R=113, wr = 2.3, wb = 1, g = 0.55, angle=0)
+
+ r13.move(origin = r13.ports["o2"].center, destination=(ec.ports["i12"].x+1500,(ec.ports["i12"].y)))
+ r14.move(origin = r14.ports["o2"].center, destination=(ec.ports["i12"].x+2000,(ec.ports["i12"].y)))
+ r15.move(origin = r15.ports["o2"].center, destination=(ec.ports["i12"].x+2500,(ec.ports["i12"].y)))
+ r16.move(origin = r16.ports["o2"].center, destination=(ec.ports["i12"].x+3000,(ec.ports["i12"].y)))
+
+ ecx1 = comp<<exspot_packaging()
+ ecx2 = comp<<exspot_packaging()
+ ecx1.mirror_x()
+ ecx2.mirror_x()
+ ecx1.move(origin = ecx1.ports["o1"].center,destination=(ec.ports[f"{"i"}{num}"].x,ec.ports[f"{"i"}{num}"].y-127))
+ ecx2.move(origin = ecx2.ports["o1"].center,destination=(ec.ports[f"{"i"}{num}"].x,ec.ports[f"{"i"}{num}"].y-2*127))
  return comp
 
