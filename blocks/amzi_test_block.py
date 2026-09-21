@@ -152,7 +152,7 @@ def amzi_block():
     pbs_test.move(         
         origin=pbs_test.ports["o1"].center,
         destination=(
-            exspot9.ports["o1"].x-50,
+            exspot9.ports["o1"].x-10,
             exspot9.ports["o1"].y
         ))
 
