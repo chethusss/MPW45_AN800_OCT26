@@ -86,8 +86,8 @@ def bezier(
 
 @gf.cell
 def spiral_block(
-    xpush=2000,
-    ypush=700,
+    xpush=2050,
+    ypush=-50,
 ):
     c = gf.Component()
 

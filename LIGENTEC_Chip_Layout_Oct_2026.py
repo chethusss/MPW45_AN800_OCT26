@@ -5,6 +5,7 @@ from technology.pdk import AN800_PDK
 from blocks.spiral_block import spiral_block
 from blocks.amzi_test_block import amzi_block
 from blocks.ring_test_block import ring_array
+from blocks.mzi_lattice_test import mzilatticetest
 
 
 # ----------------------------------------------------------
@@ -66,7 +67,7 @@ spiraltest = pic_5b.add_ref(
 
 spiraltest.move(
     spiraltest.ports["ref1"].center,
-    (0, csl_y - 1200),
+    (0, csl_y - 1200+127*5),
 )
 
 
@@ -79,6 +80,14 @@ AMZItest1.move(
 )
 Ring_block = pic_5a.add_ref(ring_array())
 Ring_block.move(origin=Ring_block.ports["ref1"].center,destination=(10,AMZItest1.ports["ref1"].y+127*31))
+
+
+mzilattest = pic_5b.add_ref(mzilatticetest())
+mzilattest.move(
+    mzilattest.ports["ref"].center,
+    (10, csl_y - 1200),
+)
+
 # ----------------------------------------------------------
 # Add PIC blocks to chip
 # ----------------------------------------------------------
