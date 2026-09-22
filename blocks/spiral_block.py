@@ -87,12 +87,12 @@ def bezier(
 @gf.cell
 def spiral_block(
     xpush=2050,
-    ypush=-50,
+    ypush=120,
 ):
     c = gf.Component()
 
     N0_y_pos = 0
-    pitch_edge_couplers = 3 * 127
+    pitch_edge_couplers = 127
 
     # ----------------------------------------------------------
     # Packaging tapers
@@ -102,9 +102,13 @@ def spiral_block(
 
     inv_taper1 = c.add_ref(taper)
     inv_taper2 = c.add_ref(taper)
+    inv_taper3 = c.add_ref(taper)
+    inv_taper4 = c.add_ref(taper)
 
     inv_taper1.mirror_x()
     inv_taper2.mirror_x()
+    inv_taper3.mirror_x()
+    inv_taper4.mirror_x()
 
     # ----------------------------------------------------------
     # Imported spiral
@@ -126,11 +130,24 @@ def spiral_block(
             N0_y_pos,
         ]
     )
+    inv_taper3.move(
+        [
+            taper.xsize - 1,
+            N0_y_pos - pitch_edge_couplers,
+        ]
+    )
+    inv_taper4.move(
+        [
+            taper.xsize - 1,
+            N0_y_pos - 2*pitch_edge_couplers,
+        ]
+    )
+
 
     inv_taper2.move(
         [
             taper.xsize - 1,
-            N0_y_pos - pitch_edge_couplers,
+            N0_y_pos - 3*pitch_edge_couplers,
         ]
     )
 
@@ -186,6 +203,7 @@ def spiral_block(
     # Bezier: circular bend -> taper 1
     # ----------------------------------------------------------
 
+    gf.routing.route_single(c, port1 = inv_taper3.ports["o1"], port2 = inv_taper4.ports["o1"], cross_section="SM")
     c.add_polygon(
         points=bezier(
             npoints=2000,

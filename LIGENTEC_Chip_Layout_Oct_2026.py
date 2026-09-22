@@ -64,10 +64,10 @@ chs_pic_5b = pic_5b.add_polygon(
 spiraltest = pic_5b.add_ref(
     spiral_block()
 )
-
+shift1 = 1200 + 280
 spiraltest.move(
     spiraltest.ports["ref1"].center,
-    (0, csl_y - 1200+127*5),
+    (0, csl_y - shift1 + 127*5),
 )
 
 
@@ -85,7 +85,7 @@ Ring_block.move(origin=Ring_block.ports["ref1"].center,destination=(10,AMZItest1
 mzilattest = pic_5b.add_ref(mzilatticetest())
 mzilattest.move(
     mzilattest.ports["ref"].center,
-    (10, csl_y - 1200),
+    (10, csl_y - shift1),
 )
 
 # ----------------------------------------------------------

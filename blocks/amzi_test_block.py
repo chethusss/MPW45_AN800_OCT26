@@ -34,6 +34,8 @@ def amzi_block():
     exspot7 = c << exspot_packaging()
     exspot8 = c << exspot_packaging()
     exspot9 = c << exspot_packaging()
+    exspot10 = c << exspot_packaging()
+    exspot11 = c << exspot_packaging()
 
 
     # Flip all edge couplers about the Y axis
@@ -79,17 +81,27 @@ def amzi_block():
 
     exspot7.move(
         origin=exspot7.ports["o2"].center,
-        destination=(5190, 0),
+        destination=(5190, pitch),
     )
 
     exspot8.move(
         origin=exspot8.ports["o2"].center,
-        destination=(5190, pitch),
+        destination=(5190, 2*pitch),
     )
 
     exspot9.move(
         origin=exspot9.ports["o2"].center,
-        destination=(5190, 2 * pitch),
+        destination=(5190,  3*pitch),
+    )
+
+    exspot10.move(
+        origin=exspot10.ports["o2"].center,
+        destination=(5190, 0*pitch),
+    )
+
+    exspot11.move(
+        origin=exspot11.ports["o2"].center,
+        destination=(5190,  4*pitch),
     )
 
     # ==========================================================
@@ -149,10 +161,11 @@ def amzi_block():
 
     pbs_test = c<<PBS()
     pbs_test.mirror_x()
+    pbs_test.mirror_y()
     pbs_test.move(         
         origin=pbs_test.ports["o1"].center,
         destination=(
-            exspot9.ports["o1"].x-10,
+            exspot9.ports["o1"].x-5,
             exspot9.ports["o1"].y
         ))
 
@@ -249,18 +262,28 @@ def amzi_block():
 
     gf.routing.route_single(
     c,
-    port1=pbs_test.ports["o3"],
+    port1=pbs_test.ports["o2"],
     port2=exspot8.ports["o1"],
     cross_section="SM",
     )
 
     gf.routing.route_single(
     c,
-    port1=pbs_test.ports["o2"],
+    port1=pbs_test.ports["o3"],
     port2=exspot7.ports["o1"],
     cross_section="SM",
-    steps=[ {"dx": -60},
+    steps=[ {"dx": -70},
             {"y": exspot7.ports["o1"].y}
+        ]
+    )
+
+    gf.routing.route_single(
+    c,
+    port1=exspot11.ports["o1"],
+    port2=exspot10.ports["o1"],
+    cross_section="SM",
+    steps=[ {"x": pbs_test.ports["o2"].x-85},
+            {"y": exspot10.ports["o1"].y}
         ]
     )
 

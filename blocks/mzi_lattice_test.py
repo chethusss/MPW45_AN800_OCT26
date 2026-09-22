@@ -2,7 +2,7 @@ import gdsfactory as gf
 
 from technology.layer_map import LAYER
 from technology.cross_sections import x_strip_lig
-from components.BB_import import exspot_packaging
+from components.BB_import import exspot_packaging, PBS
 from blocks.mzi_lattice_combiner import mzilattice
 
 @gf.cell
@@ -68,8 +68,17 @@ def mzilatticetest(yref=0) -> gf.Component:
         ),
     )
 
+    pbs1 = mzilat << PBS()
+    pbs1.move(
+        origin=pbs1.ports["o1"].center,
+        destination=(
+            incouplers[1].ports["o1"].center[0] + 10,
+            incouplers[1].ports["o1"].center[1],
+        ),
+    )
+
     # ==========================================================
-    # ROUTE 1
+    # ROUTES 1
     #
     # lattice o2 -> edge coupler 0
     # ==========================================================
@@ -77,7 +86,7 @@ def mzilatticetest(yref=0) -> gf.Component:
     gf.routing.route_single(
         component=mzilat,
         port1=lat.ports["o1"],
-        port2=incouplers[0].ports["o1"],
+        port2=pbs1.ports["o3"],
         bend="bend_euler",
         cross_section=x_strip_lig,
         steps=[
@@ -86,34 +95,33 @@ def mzilatticetest(yref=0) -> gf.Component:
                 "x": incouplers[3].ports["o1"].center[0] + 80
             },
             {
-                "y": incouplers[0].ports["o1"].center[1]
+                "y": pbs1.ports["o3"].center[1] - 100
+            },
+            {
+                "x": pbs1.ports["o3"].center[0] + 50
+            },
+            {
+                "y": pbs1.ports["o3"].center[1]
             },
         ],
     )
-
-
-    # ==========================================================
-    # ROUTE 2
-    #
-    # lattice o1 -> edge coupler 1
-    # ==========================================================
 
     gf.routing.route_single(
         component=mzilat,
-        port1=lat.ports["o2"],
+        port1=pbs1.ports["o2"],
+        port2=incouplers[0].ports["o1"],
+        bend="bend_euler",
+        cross_section=x_strip_lig,
+    )
+
+    gf.routing.route_single(
+        component=mzilat,
+        port1=pbs1.ports["o1"],
         port2=incouplers[1].ports["o1"],
         bend="bend_euler",
         cross_section=x_strip_lig,
-        steps=[
-            {"dy": 60},
-            {
-                "x": incouplers[3].ports["o1"].center[0] + 70
-            },
-            {
-                "y": incouplers[1].ports["o1"].center[1]
-            },
-        ],
     )
+
 
     # ==========================================================
     # ROUTE 3
