@@ -6,6 +6,7 @@ from blocks.spiral_block import spiral_block
 from blocks.amzi_test_block import amzi_block
 from blocks.ring_test_block import ring_array
 from blocks.mzi_lattice_test import mzilatticetest
+from blocks.bbdc_amzi_block import bbdc_amzi_block
 
 
 # ----------------------------------------------------------
@@ -87,6 +88,9 @@ mzilattest.move(
     mzilattest.ports["ref"].center,
     (10, csl_y - shift1),
 )
+
+bbdctest = pic_5b.add_ref(bbdc_amzi_block())
+bbdctest.move((10, csl_y - shift1 + 127*11))
 
 # ----------------------------------------------------------
 # Add PIC blocks to chip
