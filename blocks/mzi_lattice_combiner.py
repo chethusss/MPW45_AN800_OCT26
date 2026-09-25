@@ -7,6 +7,7 @@ from components.bent_coupler import (
     broadband_dc_withbendsR,
     broadband_dc_withbendsL,
 )
+from components.heater_pad import heater_pad
 
 x_h = gf.cross_section.cross_section(
     width=2.0,
@@ -38,13 +39,14 @@ def heater_route_segment(
         layer=LAYER.P1P,
     )
 
-    return gf.routing.route_single(
+    gf.routing.route_single(
         component=component,
         port1=p1,
         port2=p2,
         cross_section=x_h,
         bend="bend_euler",
     )
+    return p1, p2
 
 @gf.cell
 def mzilattice(
@@ -273,6 +275,8 @@ def mzilattice(
 
     top_heaters = []
     bottom_heaters = []
+    top_heater_pads = []
+    bottom_heater_pads = []
 
     for i in range(order):
 
@@ -297,7 +301,14 @@ def mzilattice(
 
         top_heaters.append(top_heater)
 
+        pad_p1 = lattice << heater_pad(orientation=0)
+        pad_p2 = lattice << heater_pad(orientation=0)
 
+        pad_p1.connect("o1", top_heater[0])
+        pad_p2.connect("o1", top_heater[1])
+
+        top_heater_pads.append((pad_p1, pad_p2))
+ 
         # ======================================================
         # BOTTOM HEATER
         # ======================================================
@@ -318,6 +329,15 @@ def mzilattice(
         )
 
         bottom_heaters.append(bottom_heater)
+
+        pad_p1 = lattice << heater_pad(orientation=0)
+        pad_p2 = lattice << heater_pad(orientation=0)
+
+        pad_p1.connect("o1", bottom_heater[0])
+        pad_p2.connect("o1", bottom_heater[1])
+
+        bottom_heater_pads.append((pad_p1, pad_p2))
+
     # ------------------------------------------------------------
     # External input ports
     #

@@ -119,7 +119,7 @@ def heater_pad(orientation=1, overlap=0, optbox=0):
         c.add_port(
             name="o1",
             center=(-7.6, p1r_size / 2),
-            orientation=-180,
+            orientation=0,
             width=2,
             cross_section="H",
         )

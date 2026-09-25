@@ -9,5 +9,5 @@ AN800_PDK.activate()
 
 c = heater_pad()
 
-#c.draw_ports()
+c.draw_ports()
 c.show()
