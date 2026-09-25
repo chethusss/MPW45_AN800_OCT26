@@ -4,7 +4,9 @@ from technology.layer_map import LAYER
 from technology.cross_sections import (
     x_strip_lig,
     x_strip_spir,
+    p1p_strip,
     x1p_width_taper,
+    p1p_width_taper,
 )
 
 
@@ -14,6 +16,7 @@ AN800_PDK = gf.Pdk(
     cross_sections={
         "SM": x_strip_lig,
         "MM": x_strip_spir,
+        "H": p1p_strip
     },
     cells={
         "straight": gf.components.straight,
@@ -22,5 +25,6 @@ AN800_PDK = gf.Pdk(
     },
     layer_transitions={
         LAYER.X1P: x1p_width_taper,
+        LAYER.P1P: p1p_width_taper
     },
 )
